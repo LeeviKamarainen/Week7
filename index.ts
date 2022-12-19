@@ -85,7 +85,7 @@ app.get('/vehicle/search/:model', (req: Request,res: Response) => {
                 vehicleFound = element;
                 if(element.bodyType == undefined) {
                     let moreInfo = vehicleList[index+1];
-                    vehicleFound = {model,moreInfo}
+                    vehicleFound = {element,moreInfo}
                 }
             }
         }
