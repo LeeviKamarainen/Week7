@@ -59,8 +59,18 @@ app.get('/vehicle/search/:model', (req, res) => {
     let model = req.params.model;
     let vehicleFound;
     vehicleList.map((element, index) => {
-        if (isVehicle(element)) { //help from https://stackoverflow.com/questions/55421793/how-to-map-over-array-of-multiple-types-in-typescript
-            if (element.model == model) {
+        if(isVehicle(element)) { //help from https://stackoverflow.com/questions/55421793/how-to-map-over-array-of-multiple-types-in-typescript
+            if(element.model == model) {
+                vehicleFound = element;
+            }
+        }
+        if(isBoat(element)) { //help from https://stackoverflow.com/questions/55421793/how-to-map-over-array-of-multiple-types-in-typescript
+            if(element.draft == parseInt(model)) {
+                vehicleFound = element;
+            }
+        }
+        if(isPlane(element)) { //help from https://stackoverflow.com/questions/55421793/how-to-map-over-array-of-multiple-types-in-typescript
+            if(element.wingspan == parseInt(model)) {
                 vehicleFound = element;
             }
         }
