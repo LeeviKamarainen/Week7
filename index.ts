@@ -54,6 +54,26 @@ app.get('/hello', (req: Request,res: Response) => {
 app.post('/vehicle/add', (req: Request,res: Response) => {
 
     let data = req.body;
+    if(isBoat(data)) {
+        let newBoat: boat = {
+            model: data.model,
+            color: data.color,
+            year: data.year,
+            power: data.power,
+            draft: data.draft
+        }
+        vehicleList.push(newBoat)
+    }
+    if(isPlane(data)) {
+        let newPlane: plane = {
+            wingspan: data.wingspan,
+            model: data.model,
+            color: data.color,
+            year: data.year,
+            power: data.power
+        }
+        vehicleList.push(newPlane)
+    }
     if(isVehicle(data)) {
         let newVehicle: vehicle = {
             model: data.model,
@@ -67,27 +87,8 @@ app.post('/vehicle/add', (req: Request,res: Response) => {
         vehicleList.push(newVehicle);
     }
 
-    if(isBoat(data)) {
-        let newBoat: boat = {
-            model: data.model,
-            color: data.color,
-            year: data.year,
-            power: data.power,
-            draft: data.draft
-        }
-        vehicleList.push(newBoat)
-    }
-
-    if(isPlane(data)) {
-        let newPlane: plane = {
-            wingspan: data.wingspan,
-            model: data.model,
-            color: data.color,
-            year: data.year,
-            power: data.power
-        }
-        vehicleList.push(newPlane)
-    }
+  
+  
     console.log(vehicleList)
     res.status(201).send("Vehicle added")
 });
@@ -99,10 +100,6 @@ app.get('/vehicle/search/:model', (req: Request,res: Response) => {
         if(isVehicle(element)) { //help from https://stackoverflow.com/questions/55421793/how-to-map-over-array-of-multiple-types-in-typescript
             if(element.model == model) {
                 vehicleFound = element;
-                if(element.bodyType == undefined) {
-                    let moreInfo = vehicleList[index+1];
-                    vehicleFound = {element,moreInfo}
-                }
             }
         }
         if(isBoat(element)) { //help from https://stackoverflow.com/questions/55421793/how-to-map-over-array-of-multiple-types-in-typescript
