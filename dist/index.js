@@ -61,7 +61,7 @@ app.post('/vehicle/add', (req, res) => {
         vehicleList.push(newPlane);
     }
     console.log(vehicleList);
-    res.status(201).send("Hello world");
+    res.status(201).send("Vehicle added");
 });
 app.get('/vehicle/search/:model', (req, res) => {
     let model = req.params.model;

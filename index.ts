@@ -89,8 +89,7 @@ app.post('/vehicle/add', (req: Request,res: Response) => {
         vehicleList.push(newPlane)
     }
     console.log(vehicleList)
-    res.status(201).send("Hello world")
-
+    res.status(201).send("Vehicle added")
 });
 
 app.get('/vehicle/search/:model', (req: Request,res: Response) => {
@@ -100,6 +99,10 @@ app.get('/vehicle/search/:model', (req: Request,res: Response) => {
         if(isVehicle(element)) { //help from https://stackoverflow.com/questions/55421793/how-to-map-over-array-of-multiple-types-in-typescript
             if(element.model == model) {
                 vehicleFound = element;
+                if(element.bodyType == undefined) {
+                    let moreInfo = vehicleList[index+1];
+                    vehicleFound = {element,moreInfo}
+                }
             }
         }
         if(isBoat(element)) { //help from https://stackoverflow.com/questions/55421793/how-to-map-over-array-of-multiple-types-in-typescript
