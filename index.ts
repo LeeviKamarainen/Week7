@@ -20,12 +20,20 @@ function isVehicle(obj: any): obj is vehicle{
 } // Help from: https://stackoverflow.com/questions/14425568/interface-type-check-with-typescript
 
 interface boat {
+    model: string;
+    color: string;
+    year: number;
+    power: number;
     draft: number;
 }
 function isBoat(obj: any): obj is boat{
     return obj.draft !== undefined
 }
 interface plane {
+    model: string;
+    color: string;
+    year: number;
+    power: number;
     wingspan: number
 }
 function isPlane(obj: any): obj is plane{
@@ -61,6 +69,10 @@ app.post('/vehicle/add', (req: Request,res: Response) => {
 
     if(isBoat(data)) {
         let newBoat: boat = {
+            model: data.model,
+            color: data.color,
+            year: data.year,
+            power: data.power,
             draft: data.draft
         }
         vehicleList.push(newBoat)
@@ -68,7 +80,11 @@ app.post('/vehicle/add', (req: Request,res: Response) => {
 
     if(isPlane(data)) {
         let newPlane: plane = {
-            wingspan: data.wingspan
+            wingspan: data.wingspan,
+            model: data.model,
+            color: data.color,
+            year: data.year,
+            power: data.power
         }
         vehicleList.push(newPlane)
     }
@@ -83,6 +99,16 @@ app.get('/vehicle/search/:model', (req: Request,res: Response) => {
     vehicleList.map((element, index) => {
         if(isVehicle(element)) { //help from https://stackoverflow.com/questions/55421793/how-to-map-over-array-of-multiple-types-in-typescript
             if(element.model == model) {
+                vehicleFound = element;
+            }
+        }
+        if(isBoat(element)) { //help from https://stackoverflow.com/questions/55421793/how-to-map-over-array-of-multiple-types-in-typescript
+            if(element.draft == parseInt(model)) {
+                vehicleFound = element;
+            }
+        }
+        if(isPlane(element)) { //help from https://stackoverflow.com/questions/55421793/how-to-map-over-array-of-multiple-types-in-typescript
+            if(element.wingspan == parseInt(model)) {
                 vehicleFound = element;
             }
         }

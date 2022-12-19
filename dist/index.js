@@ -42,13 +42,21 @@ app.post('/vehicle/add', (req, res) => {
     }
     if (isBoat(data)) {
         let newBoat = {
+            model: data.model,
+            color: data.color,
+            year: data.year,
+            power: data.power,
             draft: data.draft
         };
         vehicleList.push(newBoat);
     }
     if (isPlane(data)) {
         let newPlane = {
-            wingspan: data.wingspan
+            wingspan: data.wingspan,
+            model: data.model,
+            color: data.color,
+            year: data.year,
+            power: data.power
         };
         vehicleList.push(newPlane);
     }
