@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+// Help for build command: https://stackoverflow.com/questions/31749952/how-to-run-typescript-compiler-as-a-package-json-script-without-grunt-or-gulp
 var app = (0, express_1.default)();
 const port = 3000;
 const bodyParser = require('body-parser'); // Had to manually add body parser so the post data gets through and is not undefined. Help from: https://stackoverflow.com/questions/66064389/getting-typeerror-cannot-read-property-name-of-undefined-while-posting-the-f
