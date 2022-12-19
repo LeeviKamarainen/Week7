@@ -1,6 +1,6 @@
 import express, {Express, Request, Response} from 'express'
 import { Interface } from 'readline';
-
+// Help for build command: https://stackoverflow.com/questions/31749952/how-to-run-typescript-compiler-as-a-package-json-script-without-grunt-or-gulp
 var app: Express = express();
 const port: number = 3000;
 const bodyParser = require('body-parser'); // Had to manually add body parser so the post data gets through and is not undefined. Help from: https://stackoverflow.com/questions/66064389/getting-typeerror-cannot-read-property-name-of-undefined-while-posting-the-f
